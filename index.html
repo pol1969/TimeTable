@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!--Required meta tags for Bootstrap-->
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <!--Bootstrap CSS for styling-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+    <!--Font Awesome webfont for appendGrid button icons-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"/>
+</head>
+<body class="container">
+    <!--Table element for appendGrid-->
+    <table id="tblAppendGrid"></table>
+    <hr/>
+    <button id="load" type="button" class="btn btn-primary">Load Data</button>
+    <!--jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!--appendGrid JS library-->
+    <script src="https://cdn.jsdelivr.net/npm/jquery.appendgrid@2.0.2/dist/AppendGrid.js"></script>
+    <!--Script for initialize appendGrid-->
+    <script>
+        // Execute when `DOM ready`
+        document.addEventListener("DOMContentLoaded", function () {
+
+        	//массивы
+        arrCorp2 = new Array(
+	"",
+	"Алейников П. Е.",
+	"Коцюба С. К.",
+        "Ивасивка Р. Р.",
+	"Прохоренко М. Н.",
+	"Духнов А. М.",
+	"Марченко В. К.",
+	"Подберезский П. В.",
+	"Иванов В. В.",      
+	"Коновалов Ю. Е.",
+	"Cиницын П. А.",
+        "Швед О. А."
+	  );
+	arrOar1 = new Array(
+	"",
+	"Щеглов С. К.",
+        "Ивашкевич А. А.",
+	"Морозов Д. П.",
+	"Бербеца О. В.",
+	"Даниленко А. И.",
+	"Лазовик С. М.",
+	"Барановская Ю. Н." 
+		);
+	arrOar2 = new Array(
+        "",
+	"Щеглов С. К.",
+        "Малашенко Р. И.",
+	"Захаренко Т. В.",
+	"Могилевцева М. С.",
+	"Даниленко А. И.",
+	"Лазовик С. М.",
+	"Барановская Ю. Н.",      
+	"Морозов Д. П."
+	 
+		);
+	arrCorp1 = new Array(
+	"",
+	"Зингалев С. О.",
+	"Савостянов А. В.",
+        "Ивасивка Р. Р.",
+	"Прохоренко М. Н.",
+	"Духнов А. М.",
+	"Сахарова С. В.",
+	"Прудников А. И.",
+	"Иванов В. В.",      
+	"Бодрилова Е. М.",
+	"Cиницын П. А.",
+        "Миранков П. Л.",
+	"Разентов И. Н."      
+	
+		);
+        arrHospice = new Array(
+	"",
+	"Зингалев С. О.",
+	"Савостянов А. В.",
+        "Минина С. В.",
+	"Воскобойникова А. В.",
+	"Сергеенко Д. Н.",
+	"Рыжикова Н. П.",
+	"Громыко А. В.",
+	"Могилевцева М. С.",      
+	"Марченко А. В."
+                 );
+
+        
+            // Initialize appendGrid
+            var myAppendGrid = new AppendGrid({
+                element: "tblAppendGrid",
+                uiFramework: "bootstrap4",
+                iconFramework: "fontawesome5",
+		     columns: [
+    {
+      name: "corp2",
+      display: "Палатный корпус №2",
+      type: "select",
+      ctrlOptions: arrCorp2
+    },
+    {
+      name: "oar1",
+      display: "ОАР 1 пост",
+      type: "select", 	    
+      ctrlOptions:arrOar1
+    },
+    {
+      name: "oar2",
+      display: "ОАР 2 пост",
+      type: "select", 	    
+      ctrlOptions: arrOar2
+    },
+    {
+      name: "corp1",
+      display: "Палатный корпус №1",
+      type: "select",
+      ctrlOptions: arrCorp1
+       
+
+    },
+    {
+      name: "hospice",
+      display: "Хоспис",
+      type: "select",
+      ctrlOptions: arrHospice 
+        
+
+
+    }
+  ],
+		     // Optional CSS classes, to make table slimmer!
+  sectionClasses: {
+    table: "table-sm",
+    control: "form-control-sm",
+    buttonGroup: "btn-group-sm"
+  }
+	    });
+  var arrLoad = [];
+
+  function ArrLoad(corp2,oar1,oar2,corp1,hospice)
+		{
+			this.corp2 = corp2;
+			this.oar1 = oar1;
+			this.oar2 = oar2;
+			this.corp1 = corp1;
+			this.hospice = hospice;
+		}
+  
+  function randomInteger(min, max) {
+    var rand = min - 0.5 + Math.random() * (max - min + 1)
+    rand = Math.round(rand);
+    return rand;
+  }
+  var cnt = 30;
+  while(cnt > 0){		
+  var day = new ArrLoad(arrCorp2[randomInteger(1,arrCorp2.length-1)],
+	  		arrOar1[randomInteger(1,arrOar1.length-1)],
+	  		arrOar2[randomInteger(1,arrOar2.length-1)],
+	  		arrCorp1[randomInteger(1,arrCorp1.length-1)],
+	  		arrHospice[randomInteger(1,arrHospice.length-1)]
+  );		
+  /*console.log(day);*/	  
+  arrLoad.push(day);
+  cnt--;
+  };
+
+
+     
+  $("#load").on("click", function() {
+  myAppendGrid.load(arrLoad);
+  var data = myAppendGrid.getAllValue();
+  console.log(data);	  
+  });
+
+        });
+    </script>
+
+</body>
+</html>

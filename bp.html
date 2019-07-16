@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!--Required meta tags for Bootstrap-->
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <!--Bootstrap CSS for styling-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+    <!--Font Awesome webfont for appendGrid button icons-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"/>
+</head>
+<body class="container">
+    <!--Table element for appendGrid-->
+    <table id="tblAppendGrid"></table>
+    <!--jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!--appendGrid JS library-->
+    <script src="https://cdn.jsdelivr.net/npm/jquery.appendgrid@2.0.2/dist/AppendGrid.js"></script>
+    <!--Script for initialize appendGrid-->
+    <script>
+        // Execute when `DOM ready`
+        document.addEventListener("DOMContentLoaded", function () {
+            // Initialize appendGrid
+            var myAppendGrid = new AppendGrid({
+                element: "tblAppendGrid",
+                uiFramework: "bootstrap4",
+                iconFramework: "fontawesome5",
+    	
+	    });
+
+        });
+    </script>
+
+</body>
+</html>
